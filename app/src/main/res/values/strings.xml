@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyApplication4</string>
+    <string name="guardar_usuario">Guardar usuario</string>
+    <string name="borrar_usuario">Borrar usuario</string>
+</resources>
