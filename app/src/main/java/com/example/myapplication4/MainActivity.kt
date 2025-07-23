@@ -32,15 +32,19 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        // Creacion de los objetos de textos y botones
         val btnMostrarSaludo = findViewById<Button>(R.id.btnGuardarUsuario)
-        val txtRecibirNombre = findViewById<EditText>(R.id.txtRecibirNombre)
-        val txtMostrarSaludo = findViewById<TextView>(R.id.txtMostrarSaludo)
         val btnBorrarUsuario = findViewById<Button>(R.id.btnBorrarUsuario)
         val btnActualizarUsuario = findViewById<Button>(R.id.btnActualizarUsuario)
+        val txtRecibirNombre = findViewById<EditText>(R.id.txtRecibirNombre)
+        val txtMostrarSaludo = findViewById<TextView>(R.id.txtMostrarSaludo)
         val txtActualizarNombre = findViewById<EditText>(R.id.txtActualizarNombre)
 
+        // Instancias de las dependencias
         val repository = UserRepository()
         val userUseCase = UserUseCases(repository)
+
+        // Instancia del view model
         val factory = UserViewModelFactory(userUseCase, repository)
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
 
@@ -49,17 +53,19 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = UserAdapter(viewModel.name.value ?: emptyList())
 
+        // Click del boton guardar usuario
         btnMostrarSaludo.setOnClickListener {
             val name = txtRecibirNombre.text.toString()
             viewModel.onNameChanged(name)
         }
 
-
+        // Click del boton borrar usuario
         btnBorrarUsuario.setOnClickListener {
             val name = txtRecibirNombre.text.toString()
             viewModel.onNameDeleted(name)
         }
 
+        // Click del boton actualizar usuario
         btnActualizarUsuario.setOnClickListener {
             val newName = txtActualizarNombre.text.toString()
             val oldName = txtRecibirNombre.text.toString()
@@ -67,8 +73,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-        // Se obtiene el dato del live data
+        // Escucha del live data que actualiza la lista de nombre
         // Le pasamos la lista actualizada al user adapter para que la muestre
         viewModel.name.observe(this) { message ->
             Log.i("MainActivity", "Name: ${viewModel.name.value}")
@@ -76,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             recyclerView.adapter = UserAdapter(message)
         }
 
-        // Live data para el saludo
+        // Live data que actuaaliza el estatus
         viewModel.resultado.observe(this) { saludo ->
             Log.i("MainActivity", "Name: ${saludo}")
         txtMostrarSaludo.text = saludo

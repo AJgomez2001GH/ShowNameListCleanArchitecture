@@ -3,7 +3,8 @@ package com.example.myapplication4.domain.usecases
 import com.example.myapplication4.data.UserRepository
 import com.example.myapplication4.domain.models.UserModel
 
-
+// Esta clase regresa los estatus que se van a mostrar
+// Esta clase se comunica directamente con el repositorio
 class UserUseCases (val insRepository: UserRepository){
     fun validateUserName(name:String):String{
         if(name.isEmpty()){

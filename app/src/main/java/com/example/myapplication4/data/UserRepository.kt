@@ -22,7 +22,6 @@ class UserRepository {
         if (currentUser.isBlank()==false){
             userList.add(currentUser)
         }
-
     }
 
     fun deleteUser(user:UserModel){
@@ -35,7 +34,4 @@ class UserRepository {
             userList[index] = user.name
         }
     }
-
-
-
 }

@@ -14,25 +14,28 @@ class UserViewModel(val insUseCase: UserUseCases,
     private val _resultado = MutableLiveData<String>()
     val resultado: LiveData<String> = _resultado
 
-    // Cuando se presiona el boton se ejecuta esta funcion
     fun onNameChanged(nameToValidate: String) {
-        // Se hace la validacion del nombre y se guarda en el repo y se ,anda al live data
+        // Valida que exista un nombre con el caso de uso (El caso de uso se comunica directamente con el repositorio), en esta misma linea manda el estatus al live data
+        // Vuelve a traer la lista actualizada del repo
+        // Manda la lista actualizada al live data
         _resultado.value=insUseCase.validateUserName(nameToValidate)
-
-
-        // Obtener lista actual desde el repo
         val currentList = insUserRepository.provideUserList()
         _name.value = currentList
     }
 
     fun onNameDeleted(nameToDelete: String) {
-        // Borra el nopmbre del repo y vuelve a traese la lista Y LA MANDA AL LIVE DATA
+        // Borra el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio, en esta misma linea manda el estatus al live data
+        // Vuelve a traer la lista actualizada del repo
+        // Manda la lista actualizada al live data
         _resultado.value=insUseCase.deleteUserName(nameToDelete)
         val currentList = insUserRepository.provideUserList()
         _name.value = currentList
     }
 
     fun onNameUpdated(oldName: String, newName: String) {
+        // Actualiza el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio, en esta misma linea manda el estatus al live data
+        // Vuelve a traer la lista actualizada del repo
+        // Manda la lista actualizada al live data
         _resultado.value=insUseCase.updateUserName(oldName, newName)
         val currentList = insUserRepository.provideUserList()
         _name.value = currentList
