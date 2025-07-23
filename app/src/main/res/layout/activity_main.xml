@@ -1,97 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/inputEditText"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter name or new name" />
+
+    <EditText
+        android:id="@+id/oldNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="(Optional) Old name for update" />
+
+    <Button
+        android:id="@+id/addUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add User" />
+
+    <Button
+        android:id="@+id/deleteUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete User" />
+
+    <Button
+        android:id="@+id/updateUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update User" />
+
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
+        android:id="@+id/userListTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/el_estatus_se_mostrar_aqu"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp" />
+        android:text="Users will appear here"
+        android:paddingTop="16dp" />
+</LinearLayout>
 
-    <TextView
-        android:id="@+id/txtMostrarSaludo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20sp"
-        android:singleLine="true"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/txtRecibirNombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Escribe tu nombre"
-        app:layout_constraintTop_toBottomOf="@id/txtMostrarSaludo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"
-        android:layout_marginTop="400dp"/>
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/txtActualizarNombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Actualiza tu nombre"
-        app:layout_constraintTop_toBottomOf="@id/txtMostrarSaludo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"
-        android:layout_marginTop="340dp"/>
-
-
-    <Button
-        android:id="@+id/btnGuardarUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/guardar_usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtRecibirNombre" />
-
-    <Button
-        android:id="@+id/btnBorrarUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/borrar_usuario"
-        app:layout_constraintTop_toBottomOf="@id/txtRecibirNombre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="200dp"/>
-
-    <Button
-        android:id="@+id/btnActualizarUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/actualizar_ususario"
-        app:layout_constraintTop_toBottomOf="@id/txtRecibirNombre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="0dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewNames"
-        android:layout_width="300dp"
-        android:layout_height="340dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="117dp"
-        android:layout_marginStart="50dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
