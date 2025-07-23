@@ -3,4 +3,5 @@
     <string name="guardar_usuario">Guardar usuario</string>
     <string name="borrar_usuario">Borrar usuario</string>
     <string name="actualizar_ususario">Actualizar ususario</string>
+    <string name="el_estatus_se_mostrar_aqu">El estatus se mostrará aquí</string>
 </resources>

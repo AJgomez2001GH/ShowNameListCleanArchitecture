@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Live data para el saludo
-        viewModel.saludo.observe(this) { saludo ->
+        viewModel.resultado.observe(this) { saludo ->
             Log.i("MainActivity", "Name: ${saludo}")
         txtMostrarSaludo.text = saludo
         }

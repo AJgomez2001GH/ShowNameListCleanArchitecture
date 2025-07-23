@@ -17,22 +17,30 @@ class UserUseCases (val insRepository: UserRepository){
         }
     }
 
-    fun deleteUserName(name:String){
+    fun deleteUserName(name:String):String{
         var nameList = insRepository.provideUserList()
         if (name in nameList) {
             println("La fruta está en la lista")
             val user = UserModel(name)
             insRepository.deleteUser(user)
+            return "Deleted $name suscessfully"
         } else {
             println("La fruta no está en la lista")
+            return "Name not found, delete failed"
         }
     }
 
-    fun updateUserName(oldName: String, newName: String){
+    fun updateUserName(oldName: String, newName: String): String{
         var nameList = insRepository.provideUserList()
         val indice = nameList.indexOf(oldName)
         val user = UserModel(newName)
         insRepository.updateUser(user, indice)
+        if(indice != -1){
+            return "Updated $oldName to $newName suscessfully"
+        }
+        else{
+            return "index not found, update failed"
+        }
     }
 
 
