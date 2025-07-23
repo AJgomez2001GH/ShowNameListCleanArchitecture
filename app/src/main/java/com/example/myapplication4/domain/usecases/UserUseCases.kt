@@ -28,6 +28,13 @@ class UserUseCases (val insRepository: UserRepository){
         }
     }
 
+    fun updateUserName(oldName: String, newName: String){
+        var nameList = insRepository.provideUserList()
+        val indice = nameList.indexOf(oldName)
+        val user = UserModel(newName)
+        insRepository.updateUser(user, indice)
+    }
+
 
 
 

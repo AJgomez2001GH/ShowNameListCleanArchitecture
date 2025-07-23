@@ -30,6 +30,12 @@ class UserRepository {
         userList.remove(currentUser)
     }
 
+    fun updateUser(user:UserModel, index:Int){
+        if (index != -1) {
+            userList[index] = user.name
+        }
+    }
+
 
 
 }

@@ -41,6 +41,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp"
         android:layout_marginTop="400dp"/>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/txtActualizarNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Actualiza tu nombre"
+        app:layout_constraintTop_toBottomOf="@id/txtMostrarSaludo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp"
+        android:layout_marginTop="340dp"/>
+
 
     <Button
         android:id="@+id/btnGuardarUsuario"
@@ -62,12 +73,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="200dp"/>
+        android:layout_marginStart="200dp"/>
 
+    <Button
+        android:id="@+id/btnActualizarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/actualizar_ususario"
+        app:layout_constraintTop_toBottomOf="@id/txtRecibirNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="0dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNames"
         android:layout_width="300dp"
-        android:layout_height="400dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="340dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="117dp"
+        android:layout_marginStart="50dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

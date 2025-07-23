@@ -36,15 +36,15 @@ class MainActivity : AppCompatActivity() {
         val txtRecibirNombre = findViewById<EditText>(R.id.txtRecibirNombre)
         val txtMostrarSaludo = findViewById<TextView>(R.id.txtMostrarSaludo)
         val btnBorrarUsuario = findViewById<Button>(R.id.btnBorrarUsuario)
+        val btnActualizarUsuario = findViewById<Button>(R.id.btnActualizarUsuario)
+        val txtActualizarNombre = findViewById<EditText>(R.id.txtActualizarNombre)
 
         val repository = UserRepository()
         val userUseCase = UserUseCases(repository)
         val factory = UserViewModelFactory(userUseCase, repository)
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
 
-
-
-
+        // Configura el RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewNames)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = UserAdapter(viewModel.name.value ?: emptyList())
@@ -60,6 +60,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.onNameDeleted(name)
         }
 
+        btnActualizarUsuario.setOnClickListener {
+            val newName = txtActualizarNombre.text.toString()
+            val oldName = txtRecibirNombre.text.toString()
+            viewModel.onNameUpdated(oldName, newName)
+
+        }
+
 
         // Se obtiene el dato del live data
         // Le pasamos la lista actualizada al user adapter para que la muestre
@@ -69,5 +76,10 @@ class MainActivity : AppCompatActivity() {
             recyclerView.adapter = UserAdapter(message)
         }
 
+        // Live data para el saludo
+        viewModel.saludo.observe(this) { saludo ->
+            Log.i("MainActivity", "Name: ${saludo}")
+        txtMostrarSaludo.text = saludo
+        }
     }
 }
