@@ -7,31 +7,23 @@ import com.example.myapplication4.domain.models.UserModel
 
 //Vamos a recibir el objeto "Ususario" de la data class que se comunica con el repositorio (el modelo)
 class UserRepository {
-    var userList: MutableList<String> = mutableListOf() // Variable para almacenar el nombre del los    ario
+    var userList: MutableList<UserModel> = mutableListOf<UserModel>() // Variable para almacenar el nombre del los    ario
 
-    init {
-        //userList.add("Harcodeado1")
-        //userList.add("Harcodeado2")
-        //userList.add("Harcodeado3")
-    }
-    fun provideUserList() = userList
+    fun provideUserList() = userList.toList()
 
     // Como el objeto ya se esta pasando como parametro no es necesario definirl el objeto de la data class con su constructor
     fun storeUser(user:UserModel){
-        var currentUser = user.name
-        if (currentUser.isBlank()==false){
-            userList.add(currentUser)
-        }
+        userList.add(user)
     }
 
     fun deleteUser(user:UserModel){
-        var currentUser = user.name
-        userList.remove(currentUser)
+        userList.removeIf {
+            it.name == user.name }
     }
 
-    fun updateUser(user:UserModel, index:Int){
-        if (index != -1) {
-            userList[index] = user.name
+    fun updateUser(oldName:String, newName:String){
+        userList.find { it.name.equals(oldName) }?.let {
+            it.name = newName
         }
     }
 }

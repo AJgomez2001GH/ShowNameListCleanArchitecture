@@ -13,7 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication4.data.UserRepository
-import com.example.myapplication4.domain.usecases.UserUseCases
+import com.example.myapplication4.domain.usecases.UseCaseAddUser
+import com.example.myapplication4.domain.usecases.UseCaseDeleteUser
+import com.example.myapplication4.domain.usecases.UseCaseGetUser
+import com.example.myapplication4.domain.usecases.UseCaseUpdateUser
 import com.example.myapplication4.presentation.UserAdapter
 import com.example.myapplication4.presentation.UserViewModel
 import com.example.myapplication4.presentation.UserViewModelFactory
@@ -42,10 +45,13 @@ class MainActivity : AppCompatActivity() {
 
         // Instancias de las dependencias
         val repository = UserRepository()
-        val userUseCase = UserUseCases(repository)
+        val useCaseAddUser = UseCaseAddUser(repository)
+        val useCaseDeleteUser = UseCaseDeleteUser(repository)
+        val useCaseGetUser = UseCaseGetUser(repository)
+        val useCaseUpdateUser = UseCaseUpdateUser(repository)
 
         // Instancia del view model
-        val factory = UserViewModelFactory(userUseCase, repository)
+        val factory = UserViewModelFactory(useCaseAddUser, useCaseDeleteUser, useCaseGetUser, useCaseUpdateUser)
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
 
         // Configura el RecyclerView
@@ -56,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         // Click del boton guardar usuario
         btnMostrarSaludo.setOnClickListener {
             val name = txtRecibirNombre.text.toString()
-            viewModel.onNameChanged(name)
+            viewModel.onNameAdded(name)
         }
 
         // Click del boton borrar usuario

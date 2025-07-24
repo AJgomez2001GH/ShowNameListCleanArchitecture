@@ -4,43 +4,53 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication4.data.UserRepository
-import com.example.myapplication4.domain.usecases.UserUseCases
+import com.example.myapplication4.domain.usecases.UseCaseAddUser
+import com.example.myapplication4.domain.usecases.UseCaseDeleteUser
+import com.example.myapplication4.domain.usecases.UseCaseGetUser
+import com.example.myapplication4.domain.usecases.UseCaseUpdateUser
 
-class UserViewModel(val insUseCase: UserUseCases,
-                    val insUserRepository: UserRepository): ViewModel() {
+class UserViewModel(
+                    val insUseCaseAddUser: UseCaseAddUser,
+                    val insUseCaseDeleteUser: UseCaseDeleteUser,
+                    val insUseCaseGetUser: UseCaseGetUser,
+                    val insUseCaseUpdateUser: UseCaseUpdateUser,
+): ViewModel() {
     private val _name = MutableLiveData<MutableList<String>>(mutableListOf())
     val name: LiveData<MutableList<String>> = _name
 
     private val _resultado = MutableLiveData<String>()
     val resultado: LiveData<String> = _resultado
 
-    fun onNameChanged(nameToValidate: String) {
+    fun onNameAdded(nameToValidate: String) {
         // Valida que exista un nombre con el caso de uso (El caso de uso se comunica directamente con el repositorio), en esta misma linea manda el estatus al live data
         // Vuelve a traer la lista actualizada del repo
         // Manda la lista actualizada al live data
-        _resultado.value=insUseCase.validateUserName(nameToValidate)
-        val currentList = insUserRepository.provideUserList()
-        _name.value = currentList
+        _resultado.value=insUseCaseAddUser.execute(nameToValidate)
+        getLatestUSerListAndSendToLiveData()
     }
 
     fun onNameDeleted(nameToDelete: String) {
         // Borra el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio, en esta misma linea manda el estatus al live data
         // Vuelve a traer la lista actualizada del repo
         // Manda la lista actualizada al live data
-        _resultado.value=insUseCase.deleteUserName(nameToDelete)
-        val currentList = insUserRepository.provideUserList()
-        _name.value = currentList
+        _resultado.value=insUseCaseDeleteUser.execute(nameToDelete)
+        getLatestUSerListAndSendToLiveData()
     }
 
     fun onNameUpdated(oldName: String, newName: String) {
         // Actualiza el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio, en esta misma linea manda el estatus al live data
         // Vuelve a traer la lista actualizada del repo
         // Manda la lista actualizada al live data
-        _resultado.value=insUseCase.updateUserName(oldName, newName)
-        val currentList = insUserRepository.provideUserList()
-        _name.value = currentList
+        _resultado.value=insUseCaseUpdateUser.execute(oldName, newName)
+        getLatestUSerListAndSendToLiveData()
     }
 
+    fun getLatestUSerListAndSendToLiveData() {
+        // Vuelve a traer la lista actualizada del repo
+        // Manda la lista actualizada al live data
+        val currentList = insUseCaseGetUser.execute()
+        _name.value = currentList.map{it.name}.toMutableList()
+    }
 
 
 }
