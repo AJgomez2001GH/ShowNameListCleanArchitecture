@@ -3,7 +3,6 @@ package com.example.myapplication4.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication4.data.UserRepository
 import com.example.myapplication4.domain.usecases.UseCaseAddUser
 import com.example.myapplication4.domain.usecases.UseCaseDeleteUser
 import com.example.myapplication4.domain.usecases.UseCaseGetUser
@@ -30,7 +29,7 @@ class UserViewModel(
     }
 
     fun onNameDeleted(nameToDelete: String) {
-        // Borra el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio, en esta misma linea manda el estatus al live data
+        // Borra el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio), en esta misma linea manda el estatus al live data
         // Vuelve a traer la lista actualizada del repo
         // Manda la lista actualizada al live data
         _resultado.value=insUseCaseDeleteUser.execute(nameToDelete)
@@ -38,7 +37,7 @@ class UserViewModel(
     }
 
     fun onNameUpdated(oldName: String, newName: String) {
-        // Actualiza el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio, en esta misma linea manda el estatus al live data
+        // Actualiza el nombre del repo con el caso de uso (El caso de uso se comunica directamente con el repositorio), en esta misma linea manda el estatus al live data
         // Vuelve a traer la lista actualizada del repo
         // Manda la lista actualizada al live data
         _resultado.value=insUseCaseUpdateUser.execute(oldName, newName)

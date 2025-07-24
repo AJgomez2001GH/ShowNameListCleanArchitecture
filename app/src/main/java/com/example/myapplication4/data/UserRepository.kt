@@ -7,23 +7,30 @@ import com.example.myapplication4.domain.models.UserModel
 
 //Vamos a recibir el objeto "Ususario" de la data class que se comunica con el repositorio (el modelo)
 class UserRepository {
-    var userList: MutableList<UserModel> = mutableListOf<UserModel>() // Variable para almacenar el nombre del los    ario
+    var userList: MutableList<UserModel> = mutableListOf<UserModel>()
 
-    fun provideUserList() = userList.toList()
-
-    // Como el objeto ya se esta pasando como parametro no es necesario definirl el objeto de la data class con su constructor
+    // Generamos la instancia de "UserModel" desde el caso de uso, no es necesario enstanciarla aqui
+    // La instancia es el parametro que espera la funcion, por lo tanto, la instancia no se genera en repository
     fun storeUser(user:UserModel){
         userList.add(user)
     }
 
+
+    // Generamos la instancia de "UserModel" desde el caso de uso, no es necesario enstanciarla aqui
+    // La instancia es el parametro que espera la funcion, por lo tanto, la instancia no se genera en repository
     fun deleteUser(user:UserModel){
         userList.removeIf {
             it.name == user.name }
     }
 
+
+    // Generamos la instancia de "UserModel" desde el caso de uso, no es necesario enstanciarla aqui
+    // La instancia es el parametro que espera la funcion, por lo tanto, la instancia no se genera en repository
     fun updateUser(oldName:String, newName:String){
         userList.find { it.name.equals(oldName) }?.let {
             it.name = newName
         }
     }
+
+    fun provideUserList() = userList.toList()
 }
