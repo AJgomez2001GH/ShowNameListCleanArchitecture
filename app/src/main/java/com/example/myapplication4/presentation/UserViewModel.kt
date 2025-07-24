@@ -7,13 +7,17 @@ import com.example.myapplication4.domain.usecases.UseCaseAddUser
 import com.example.myapplication4.domain.usecases.UseCaseDeleteUser
 import com.example.myapplication4.domain.usecases.UseCaseGetUser
 import com.example.myapplication4.domain.usecases.UseCaseUpdateUser
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class UserViewModel(
+@HiltViewModel
+class UserViewModel @Inject constructor(
                     val insUseCaseAddUser: UseCaseAddUser,
                     val insUseCaseDeleteUser: UseCaseDeleteUser,
                     val insUseCaseGetUser: UseCaseGetUser,
                     val insUseCaseUpdateUser: UseCaseUpdateUser,
-): ViewModel() {
+
+    ): ViewModel() {
     private val _name = MutableLiveData<MutableList<String>>(mutableListOf())
     val name: LiveData<MutableList<String>> = _name
 

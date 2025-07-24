@@ -6,8 +6,9 @@ import com.example.myapplication4.domain.usecases.UseCaseAddUser
 import com.example.myapplication4.domain.usecases.UseCaseDeleteUser
 import com.example.myapplication4.domain.usecases.UseCaseGetUser
 import com.example.myapplication4.domain.usecases.UseCaseUpdateUser
+import javax.inject.Inject
 
-class UserViewModelFactory (
+class UserViewModelFactory @Inject constructor(
     private val useCaseAddUser: UseCaseAddUser,
     private val useCaseDeleteUser: UseCaseDeleteUser,
     private val useCaseGetUser: UseCaseGetUser,

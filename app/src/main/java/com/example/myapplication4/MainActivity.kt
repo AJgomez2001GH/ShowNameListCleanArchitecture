@@ -20,10 +20,12 @@ import com.example.myapplication4.domain.usecases.UseCaseUpdateUser
 import com.example.myapplication4.presentation.UserAdapter
 import com.example.myapplication4.presentation.UserViewModel
 import com.example.myapplication4.presentation.UserViewModelFactory
-import kotlinx.coroutines.delay
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.viewModels
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: UserViewModel
+    //private lateinit var viewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,15 +46,17 @@ class MainActivity : AppCompatActivity() {
         val txtActualizarNombre = findViewById<EditText>(R.id.txtActualizarNombre)
 
         // Instancias de las dependencias
-        val repository = UserRepository()
-        val useCaseAddUser = UseCaseAddUser(repository)
-        val useCaseDeleteUser = UseCaseDeleteUser(repository)
-        val useCaseGetUser = UseCaseGetUser(repository)
-        val useCaseUpdateUser = UseCaseUpdateUser(repository)
+        //val repository = UserRepository()
+        //val useCaseAddUser = UseCaseAddUser(repository)
+        //val useCaseDeleteUser = UseCaseDeleteUser(repository)
+        //val useCaseGetUser = UseCaseGetUser(repository)
+        //val useCaseUpdateUser = UseCaseUpdateUser(repository)
 
         // Instancia del view model
-        val factory = UserViewModelFactory(useCaseAddUser, useCaseDeleteUser, useCaseGetUser, useCaseUpdateUser)
-        viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+        //val factory = UserViewModelFactory(useCaseAddUser, useCaseDeleteUser, useCaseGetUser, useCaseUpdateUser)
+        //viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+        val viewModel: UserViewModel by viewModels()
+
 
         // Configura el RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewNames)
