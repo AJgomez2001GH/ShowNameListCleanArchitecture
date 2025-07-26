@@ -1,5 +1,6 @@
-package com.example.myapplication4.data
+package com.example.myapplication4.DI
 
+//import com.example.myapplication4.data.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +19,8 @@ object UserModule {
     // Si cualquiera de las clases necesita un objeto de repositorio lo va a tomar de aqui
     @Provides
     @Singleton
-    fun provideUserRepository(): UserRepository {
-        return UserRepository()
+    fun provideUserRepository(): UserRepositoryImpl {
+        return UserRepositoryImpl()
     }
 
     //Si necesitamos proveer otro objeto lo agregariamos aqui
