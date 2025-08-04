@@ -7,6 +7,7 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+        mavenLocal() // 👈 Aquí debe ir PARA LEER PUBLICACIONES LOCALES
         mavenCentral()
         gradlePluginPortal()
     }
@@ -14,6 +15,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        mavenLocal() // 👈 Aquí debe ir PARA LEER PUBLICACIONES LOCALES
         google()
         mavenCentral()
     }

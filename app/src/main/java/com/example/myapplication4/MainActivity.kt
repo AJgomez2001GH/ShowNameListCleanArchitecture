@@ -26,6 +26,10 @@ import androidx.activity.viewModels
 //Se eliminan los guiones bajos (_) y se convierte a CamelCase, luego se le agrega "Binding" al final.
 import com.example.myapplication4.databinding.ActivityMainBinding
 
+//Libreria hecha de forma local
+//IMPORTANTE: No usar las que ofuzcan las clases (Las realease)
+import com.empresa.mylibrary.GenerateRandomNumbers
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     //private lateinit var viewModel: UserViewModel
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
 
         // Configuracion de binding
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -109,6 +114,16 @@ class MainActivity : AppCompatActivity() {
         viewModel.resultado.observe(this) { saludo ->
             Log.i("MainActivity", "Name: ${saludo}")
             binding.txtMostrarSaludo.text = saludo
+
+            //Este codigo solo es dummy para ver si pudimos importar correctamente la libreria que se encuentra en el repo:
+            //https://github.com/AJgomez2001GH/ModuloLibreria
+            var insNumRandom = GenerateRandomNumbers()
+            var numRandom=insNumRandom.execute()
+            println("El num random es: $numRandom")
         }
+
+
+
+
     }
 }
